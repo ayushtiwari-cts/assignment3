@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.learn'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.1.9'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '3.2.3'
+
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+//Add annotationProcessor for lombok
+annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.1.9'
+	//Add dependency to generate the JWT token
+implementation 'io.jsonwebtoken:jjwt:0.9.1'
+// Add jaxb-api for the JAXB support
+implementation 'javax.xml.bind:jaxb-api:2.3.1'
+	
+//Add dependency for javax servlet
+implementation 'javax.servlet:javax.servlet-api:4.0.1'
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
